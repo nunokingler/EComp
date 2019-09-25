@@ -36,6 +36,7 @@ module xaddr_decoder (
 `ifdef DEBUG
       cprt_sel = 1'b0;
 `endif
+	  LED_sel = 1'b0;
       ext_sel = 1'b0;
       trap_sel = 1'b0;
 

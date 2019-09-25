@@ -71,7 +71,7 @@ loop 	rdwb
 	wrw R1          #stores back decremented iterator
         
 #set value to send to LED
-end	ldi 0x0000001
+end	ldi 0xf
 	wrw LED_BASE
 	
 #finish by writing to invalid address to activate trap

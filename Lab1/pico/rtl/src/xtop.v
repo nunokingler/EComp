@@ -154,7 +154,7 @@ module xtop (
 xLED LED(
 		.clk(clk),
 		.sel(LED_sel & data_we),
-		.data_in(data_to_LED[7:0]),
+		.data_in(data_to_wr[7:0]),
 		.LEDpin(data_out_LED)
 		);
 
