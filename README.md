@@ -7,7 +7,7 @@
 
 ### Dependences ###
 
-* Install Python 
+* Install Python (2.7)
 * Install Icarus Verilog (download a stable version from http://iverilog.icarus.com)
 
 ### Running ###
