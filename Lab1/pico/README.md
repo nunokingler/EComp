@@ -2,17 +2,15 @@
 
 ### Description ###
 
-* picoVersat is a 32-bit data 16-instruction controller
-* Version 0.1
+* This Repo was made in order to deliver my work for the course of Computer Electronics 
 
 
 ### Dependences ###
 
-* Install Python (tested in 2.7)
+* Install Python 
 * Install Icarus Verilog (download a stable version from http://iverilog.icarus.com)
 
 ### Running ###
 ```
-    cd simulation/icarus
-    make
+
 ```
