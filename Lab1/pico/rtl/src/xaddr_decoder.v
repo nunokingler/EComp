@@ -22,6 +22,7 @@ module xaddr_decoder (
                       input [31:0]        ext_data_to_rd,
 
                       output reg          LED_sel,
+                      output reg          nprt_sel,
                       output reg          trap_sel,
 
                       //read port
@@ -37,6 +38,7 @@ module xaddr_decoder (
       cprt_sel = 1'b0;
 `endif
 	  LED_sel = 1'b0;
+  	  nprt_sel = 1'b0;
       ext_sel = 1'b0;
       trap_sel = 1'b0;
 
@@ -50,7 +52,9 @@ module xaddr_decoder (
         cprt_sel = sel;
  `endif
  	else if ( (addr &  {  {`ADDR_W-`LED_ADDR_W{1'b1}}, {`LED_ADDR_W{1'b0}}  }) == `LED_BASE)
-   		LED_sel = sel;
+	 	LED_sel = sel;
+	 else if ( (addr &  {  {`ADDR_W-`NPRT_ADDR_W{1'b1}}, {`NPRT_ADDR_W{1'b0}}  }) == `NPRT_BASE)
+	    		nprt_sel = sel;
       else
           trap_sel = sel;
    end

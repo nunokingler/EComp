@@ -33,6 +33,9 @@
 `define LED_BASE 20481 //0x5000
 `define LED_ADDR_W 0 //only one address
 
+`define NPRT_BASE 20482 //0x5000
+`define NPRT_ADDR_W 0 //only one address
+
 `define TRAP_BASE 32767
 
 

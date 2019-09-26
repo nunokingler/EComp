@@ -42,8 +42,9 @@ module xtop (
    wire                           ext_sel;
    wire [`DATA_W-1:0]             ext_data_to_rd = par_in;
    wire [`DATA_W-1:0]             data_to_LED;
-   wire [`DATA_W-1:0]             data_out_LED;
+   wire [7:0]             data_out_LED;
    wire 						  LED_sel;
+   wire 						  nprt_sel;
 
 `ifdef DEBUG
    reg 				  cprt_sel;
@@ -134,6 +135,7 @@ module xtop (
                                //trap
                                .trap_sel(trap),
                                .LED_sel(LED_sel),
+							   .nprt_sel(nprt_sel),
                                //data output
                                .data_to_rd(data_to_rd)
                                );
@@ -157,5 +159,9 @@ xLED LED(
 		.data_in(data_to_wr[7:0]),
 		.LEDpin(data_out_LED)
 		);
-
+xnprint numprint (
+		   .clk(clk),
+		   .sel(nprt_sel & data_we),
+		   .data_in(data_to_wr[31:0])
+		   );
 endmodule
