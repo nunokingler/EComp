@@ -1,10 +1,9 @@
 `timescale 1ns / 1ps
 
-`include "xdefs.vh"
 
 module xtop_tb;
-   
-   //parameters 
+
+   //parameters
    parameter clk_period = 10;
 
    //
@@ -13,7 +12,7 @@ module xtop_tb;
    reg clk;
    reg rst;
    wire trap;
-   
+
 
    //exteranl parallel interface
    wire [`ADDR_W-2:0] par_addr;
@@ -26,31 +25,31 @@ module xtop_tb;
 
    // Testbench data memory
    reg [`DATA_W-1:0] data [2**`REGF_ADDR_W-1:0];
-   
+
    // Instantiate the Unit Under Test (UUT)
    xtop uut (
 	     .clk(clk),
              .rst(rst),
              .trap(trap),
-	     
+
    	     // external parallel interface
 	     .par_addr(par_addr),
 	     .par_we(par_we),
 	     .par_in(par_in),
 	     .par_out(par_out)
 	     );
-   
+
    initial begin
-      
+
 `ifdef DEBUG
       $dumpfile("xtop.vcd");
       $dumpvars(0,xtop_tb);
 `endif
-        
+
       // Initialize Inputs
       clk = 1;
-      rst = 0;  
-      
+      rst = 0;
+
       // Initialize parallel interface
       par_in = 0;
 
@@ -59,7 +58,7 @@ module xtop_tb;
       rst = 1;
       #clk_period;
       rst = 0;
-      
+
       //
       // Run picoVersat
       //
@@ -71,7 +70,7 @@ module xtop_tb;
       //
       for (k = 0; k < 2**`REGF_ADDR_W; k=k+1)
 	   data[k] = uut.regf.regf[k];
-  
+
       $writememh("data_out.hex", data, 0, 2**`REGF_ADDR_W - 1);
 
    end // initial begin
@@ -79,15 +78,15 @@ module xtop_tb;
 
    //
    // End simulation
-   //   
+   //
    always @(posedge clk)
-     if(trap) begin 
+     if(trap) begin
         $display("Catched Trap at time  %0d clock cycles:",($time-start_time)/clk_period);
         $finish;
-     end 
+     end
 
    // CLOCK
-   always 
+   always
      #(clk_period/2) clk = ~clk;
 
    // show registers
@@ -107,7 +106,6 @@ module xtop_tb;
    assign r12 = uut.regf.regf[12];
    assign r13 = uut.regf.regf[13];
    assign r14 = uut.regf.regf[14];
-   assign r15 = uut.regf.regf[15];  
+   assign r15 = uut.regf.regf[15];
 
 endmodule
-
